@@ -18,6 +18,10 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
+
+  <preference name="SplashScreen" value="www/splash.png" />
+  <preference name="SplashScreenDelay" value="10000" />
+
   <gap:plugin name="org.apache.cordova.battery-status"/>
   <gap:plugin name="org.apache.cordova.camera"/>
   <gap:plugin name="org.apache.cordova.media-capture"/>
@@ -53,8 +57,6 @@
   <icon src="res/icon/windows-phone/icon-48.png" gap:platform="winphone"/>
   <icon src="res/icon/windows-phone/icon-173-tile.png" gap:platform="winphone" gap:role="background"/>-->
 
-  <gap:splash src="splash.png" />
-
   <!--<gap:splash src="www/res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi"/>
   <gap:splash src="www/res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="port-mdpi"/>
   <gap:splash src="www/res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="port-hdpi"/>
@@ -67,7 +69,6 @@
   <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
   <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>-->
 
-  <preference name="SplashScreenDelay" value="10000" />
 
   <access origin="*"/>
 </widget>
