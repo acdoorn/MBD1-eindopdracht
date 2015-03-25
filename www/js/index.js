@@ -20,6 +20,7 @@ $(document).on('pageinit', '#settings', function(){
 
 
 function onDeviceReady(){
+    alert(navigator.geolocation)
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
