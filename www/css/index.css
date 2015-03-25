@@ -12,18 +12,5 @@ div#map_canvas {
     position:fixed;
     bottom:15px;
     width:94%;
+    color:green;
 }​
-#titleheadericon {
-    background:url(https://d1nhstnts0iwzs.cloudfront.net/assets/eet-nu/logo-de30a27783a298b1ba62b6e137674c48.png) no-repeat 0 0;
-    height:30px;
-    text-indent: -9999em;
-    width: 100px;
-    padding:5px !important;
-}
-.titleheadericon {
-    background:url(https://d1nhstnts0iwzs.cloudfront.net/assets/eet-nu/logo-de30a27783a298b1ba62b6e137674c48.png) no-repeat 0 0;
-    height:30px;
-    text-indent: -9999em;
-    width: 100px;
-    padding:5px !important;
-}
