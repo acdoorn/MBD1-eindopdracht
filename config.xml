@@ -19,6 +19,19 @@
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
 
+<preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="10000" />
+<platform name="android">
+    <splash src="res/screen/android/480x800.png" density="port-hdpi"/>
+    <splash src="res/screen/android/200x320.png" density="port-ldpi"/>
+    <splash src="res/screen/android/320x480.png" density="port-mdpi"/>
+    <splash src="res/screen/android/700x1280.png" density="port-xhdpi"/>
+    <splash src="res/screen/android/screen-hdpi-landscape.png" density="land-hdpi"/>
+    <splash src="res/screen/android/screen-ldpi-landscape.png" density="land-ldpi"/>
+    <splash src="res/screen/android/screen-mdpi-landscape.png" density="land-mdpi"/>
+    <splash src="res/screen/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
+</platform>
+
   <gap:plugin name="org.apache.cordova.battery-status"/>
   <gap:plugin name="org.apache.cordova.camera"/>
   <gap:plugin name="org.apache.cordova.media-capture"/>
@@ -38,10 +51,6 @@
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
   <icon src="icon.png"/>
-
-<preference name="SplashScreen" value="screen" />
-<preference name="SplashScreenDelay" value="10000" />
-
   <!--<icon src="res/icon/android/drawable-ldpi/ic_launcher.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="res/icon/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:qualifier="mdpi"/>
   <icon src="res/icon/android/drawable-hdpi/ic_launcher.png" gap:platform="android" gap:qualifier="hdpi"/>
@@ -58,17 +67,17 @@
   <icon src="res/icon/windows-phone/icon-48.png" gap:platform="winphone"/>
   <icon src="res/icon/windows-phone/icon-173-tile.png" gap:platform="winphone" gap:role="background"/>-->
 
-  <gap:splash src="www/img/splash/splash.png" gap:platform="android" gap:qualifier="port-ldpi"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="android" gap:qualifier="port-mdpi"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="android" gap:qualifier="port-hdpi"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="android" gap:qualifier="port-xhdpi"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="blackberry"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="ios" width="320" height="480"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="ios" width="640" height="960"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="ios" width="640" height="1136"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="ios" width="768" height="1024"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="ios" width="1024" height="768"/>
-  <gap:splash src="www/img/splash/splash.png" gap:platform="winphone"/>
+  <!--<gap:splash src="www/res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi"/>
+  <gap:splash src="www/res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="port-mdpi"/>
+  <gap:splash src="www/res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="port-hdpi"/>
+  <gap:splash src="www/res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:qualifier="port-xhdpi"/>
+  <gap:splash src="www/res/screen/blackberry/screen-225.png" gap:platform="blackberry"/>
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait.png" gap:platform="ios" width="320" height="480"/>
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960"/>
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136"/>
+  <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
+  <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
+  <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>-->
 
 
   <access origin="*"/>

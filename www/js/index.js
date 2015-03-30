@@ -15,7 +15,7 @@ $(document).on('pageinit', '#detail', function(){
         showDetails(null, "slide");
     }
 
-    $('#detail').on('swipeup', function(){
+    $('#detail').on('swipeleft', function(){
         var id_next = $('#id_next').val();
         if(id_next != "") {
             var rel = $('#'+id_next).attr('rel');
@@ -24,7 +24,7 @@ $(document).on('pageinit', '#detail', function(){
             showDetails(json, "slideup");
         }
     });
-    $('#detail').on('swipedown', function(){
+    $('#detail').on('swiperight', function(){
         var id_previous = $('#id_previous').val();
         if(id_previous != "") {
             var rel = $('#'+id_previous).attr('rel');
@@ -106,11 +106,11 @@ function save() {
         refreshRestaurants = true;
     }
 
-    var tag = $('#tag-input').val();
-    if(tag !== window.localStorage.getItem("tag")){
-        window.localStorage.setItem("tag", tag);
-        refreshRestaurants = true;
-    }
+    // var tag = $('#tag-input').val();
+    // if(tag !== window.localStorage.getItem("tag")){
+    //     window.localStorage.setItem("tag", tag);
+    //     refreshRestaurants = true;
+    // }
 
     if(refreshRestaurants === true){
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -190,7 +190,8 @@ function getRestaurants(position) {
                 jsonObject.next = next;
                 jsonObject.previous = previous;
                 var relString = JSON.stringify(jsonObject);
-                $('#restaurantlist').append('<li id="'+line.id+'" rel'+"='"+relString+"'"+'><a href="#" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">'+line.name+'</a></li>');
+                var rating = (line.rating !== null ? '<span style="float:right">'+line.rating+'</span>' : '')
+                $('#restaurantlist').append('<li id="'+line.id+'" rel'+"='"+relString+"'"+'><a href="#" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">'+line.name+rating+'</a></li>');
             });    
             stopLoading();
 
@@ -238,7 +239,7 @@ function showDetails(json, slide_direction) {
             } 
         });
 
-        // Address
+        // Adres
         $('#street').text(data.address.street);
         $('#zipcode_place').text(data.address.zipcode + " " + data.address.city);
         $('#country').text(data.address.country);
@@ -249,73 +250,107 @@ function showDetails(json, slide_direction) {
         if(data.website_url != null && data.website_url != "") {
             $('#own_url').attr("onclick", "navigator.app.loadUrl('" + data.website_url + "', { openExternal:true });");
             $('#own_url').text("Restaurant");
+            $('#restaurant_url').show();
         } else {
-             $('#own_url').attr("onclick", "");
-            $('#own_url').text("Unavailable");
+            $('#own_url').attr("onclick", "");
+            $('#own_url').text("Restaurant");
+            $('#restaurant_url').hide();
         }
         $('#eetnu_url').attr("onclick", "navigator.app.loadUrl('" + data.url + "', { openExternal:true });");
 
-        // Review
+        // Beoordeling
         var urlReview = "https://api.eet.nu/venues/" + id + "/reviews";
         $.getJSON(urlReview, function(reviewData) {
-            var nOfReview = 0;
-            var ratings = {"rating": 0, "ambiance": 0, "food": 0, "service": 0, "value": 0};
-            $.each(reviewData.results, function(k, v) { // k = key, v = value.
-                if(v.rating != null) {
-                    nOfReview++;
-                    ratings["rating"] = ratings["rating"] + v.rating;
-                    ratings["ambiance"] = ratings["ambiance"] + v.scores.ambiance;
-                    ratings["food"] = ratings["food"] + v.scores.food;
-                    ratings["service"] = ratings["service"] + v.scores.service;
-                    ratings["value"] = ratings["value"] + v.scores.value;
-                }
-            });
-
-            var maxScore = 10 * nOfReview;
-            $.each(ratings, function(k, v) { // k = key, v = value.
-                ratings[k] = Math.round(v / nOfReview);
-                ratings[k] = ratings[k].toString();
-                if(ratings[k] == "100") {                
-                    $('#' + k + "_stars").html(getRating(ratings[k].charAt(0) + "" + ratings[k].charAt(1)));
-                } else {
-                    $('#' + k + "_stars").html(getRating(ratings[k].charAt(0)));
-                }
-                if(ratings[k] != "NaN") {
-                    if(ratings[k] == "100") {
-                        ratings[k] = ratings[k].slice(0,-1);
-                    } else {
-                        ratings[k] = ratings[k].substr(0, 1) + "," + ratings[k].substr(1);
+            if(reviewData.results.length == 0) {
+                $('#ratings').hide();
+            } else {
+                var nOfReview = 0;
+                var ratings = {"rating": 0, "ambiance": 0, "food": 0, "service": 0, "value": 0};
+                $.each(reviewData.results, function(k, v) { // k = key, v = value.
+                    if(v.rating != null) {
+                        nOfReview++;
+                        ratings["rating"] = ratings["rating"] + v.rating;
+                        ratings["ambiance"] = ratings["ambiance"] + v.scores.ambiance;
+                        ratings["food"] = ratings["food"] + v.scores.food;
+                        ratings["service"] = ratings["service"] + v.scores.service;
+                        ratings["value"] = ratings["value"] + v.scores.value;
                     }
-                } else {
-                    ratings[k] = 0;
-                }
-                $('#' + k).text(ratings[k]);
-            });
+                });
+
+                var maxScore = 10 * nOfReview;
+                $.each(ratings, function(k, v) { // k = key, v = value.
+                    ratings[k] = Math.round(v / nOfReview);
+                    ratings[k] = ratings[k].toString();
+                    if(ratings[k] == "100") {                
+                        $('#' + k + "_stars").html(getRating(ratings[k].charAt(0) + "" + ratings[k].charAt(1)));
+                    } else {
+                        $('#' + k + "_stars").html(getRating(ratings[k].charAt(0)));
+                    }
+                    if(ratings[k] != "NaN") {
+                        if(ratings[k] == "100") {
+                            ratings[k] = ratings[k].slice(0,-1);
+                        } else {
+                            ratings[k] = ratings[k].substr(0, 1) + "," + ratings[k].substr(1);
+                        }
+                    } else {
+                        ratings[k] = 0;
+                    }
+                    $('#' + k).text(ratings[k]);
+                });
+                $('#ratings').show();
+            }
         });
 
-        // Opening Hours
+        // Openingstijden
         if(data.opening_hours.length == 0) {
-            for (var i = 0; i < 7; i++) {
-                $('#day_' + i).text("Unavailable");
-            }
+            $('#opentime').hide();
         } else {
+            for (var i = 0; i < 7; i++) {
+                $('#day_' + i).text("");
+            }
             $.each(data.opening_hours, function(k, v) { // k = key, v = value.
-                if(data.opening_hours.length == 0) {
-                    for (var i = 0; i < 7; i++) {
-                        $('#day_' + i).text("Unavailable");
-                    }
-                    return false;
-                }
-
                 if(v.closed == true) {
                     $('#day_' + v.day).text("Closed");
                 } else {
                     var start = "", end = "";
                     if(v.lunch_from == null) { start = v.dinner_from; } else { start = v.lunch_from; }
-                    if(v.dinner_till == null) { end = v.lunch_till;   } else { end = v.dinner_till;   }
-                    $('#day_' + v.day).text(start + " - " + v.dinner_till);
+                    if(v.dinner_till == null){ end = v.lunch_till;    } else { end = v.dinner_till;  }
+                    if(start == null) { start = "?"  }
+                    if(end == null)   { end = "?"    }
+                    $('#day_' + v.day).text(start + " - " + end);
                 }
             });
+            $('#opentime').show();
+        }
+
+        // Omschrijving
+        if(data.description === null) {
+            $('#descriptionfield').hide();
+        } else {
+            $('#description').text(data.description);
+            $('#descriptionfield').show();
+        }
+
+        // Menukaarten
+        if(data.tags.length == 0) {
+            $('#tags').hide();
+        } else {
+            for (var i = 0; i < 7; i++) {
+                $('#day_' + i).text("");
+            }
+            $.each(data.opening_hours, function(k, v) { // k = key, v = value.
+                if(v.closed == true) {
+                    $('#day_' + v.day).text("Closed");
+                } else {
+                    var start = "", end = "";
+                    if(v.lunch_from == null) { start = v.dinner_from; } else { start = v.lunch_from; }
+                    if(v.dinner_till == null){ end = v.lunch_till;    } else { end = v.dinner_till;  }
+                    if(start == null) { start = "?"  }
+                    if(end == null)   { end = "?"    }
+                    $('#day_' + v.day).text(start + " - " + end);
+                }
+            });
+            $('#tags').show();
         }
 
         $.mobile.changePage("#detail", { transition: slide_direction });
@@ -333,17 +368,17 @@ function fillInputField(name) {
 // Toont het loading schermpje
 function startLoading() {
     var $this = $( this ),
-        theme = "b",
-        msgText = "loading",
-        textVisible = true,
-        textonly = false;
+        theme = "a",
+        msgText = "laden",
+        textVisible = true,
+        textonly = false;
 
-    $.mobile.loading( "show", {
-            text: msgText,
-            textVisible: textVisible,
-            theme: theme,
-            textonly: textonly,
-    });
+    $.mobile.loading( "show", {
+            text: msgText,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+    });
 }
 
 // Stopt het loading scherm. 
@@ -390,3 +425,4 @@ function addToContacts() {
         alert("No telephone found!");
     }
 }
+

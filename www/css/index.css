@@ -12,5 +12,117 @@ div#map_canvas {
     position:fixed;
     bottom:15px;
     width:94%;
-    color:green;
 }​
+#save {
+  display: block;
+  background: green;
+  color: green;
+  border: none;
+  padding: 10px 20px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.ui-header {
+	margin-left:-1px; 
+	margin-top:-1px;
+}
+
+.ui-header a {
+	padding-bottom:7px;
+}
+
+.ui-header .ui-title {
+    background:url(https://d1nhstnts0iwzs.cloudfront.net/assets/eet-nu/logo-de30a27783a298b1ba62b6e137674c48.png) no-repeat 0 0;
+    height:30px;
+    text-indent: -9999em;
+    width: 100px;
+    padding:5px !important;
+    font-size: 1em;
+	min-height: 1.1em;
+	text-align: center;
+	display: block;
+	margin: 0 35%;
+	margin-top:5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	outline: 0 !important;
+}
+
+h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+h4 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+th {
+    width: 110px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.day {
+    font-weight: bold;
+    width: 50px;
+}
+
+.time {
+    width: 125px;
+    text-align: left;
+}
+
+#rating {
+    width: 50px;
+}
+
+.fa-star-o {
+    color: orange;
+}
+
+.fa-star-half-o {
+    color: yellow;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+}
+
+.fa-star {
+    color: yellow;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+}
+
+.non-link {
+    text-decoration: none;
+    color: black;
+}
+
+.ui-page { -webkit-backface-visibility: hidden; }
+
+.sprite {
+    background-image: url(../img/spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-tmpavans {
+    width: 225px;
+    height: 79px;
+    background-position: -1px -1px;
+}
+
+.sprite-tmpeetnu {
+    width: 225px;
+    height: 101px;
+    background-position: -1px -82px;
+}

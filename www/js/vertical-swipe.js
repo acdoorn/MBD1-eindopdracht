@@ -5,7 +5,7 @@
 // Distributed under MIT license
 //
 // https://github.com/blackdynamo/jquerymobile-swipeupdown
- 
+/*
 (function () {
 // initializes touch and scroll events
     var supportTouch = $.support.touch,
@@ -81,4 +81,4 @@
         };
     });
  
-})();
+})();*/
