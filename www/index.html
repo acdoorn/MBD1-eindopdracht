@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
     <head>
         <title>Eet.Nu API</title>
@@ -6,15 +6,15 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- CSS -->
+-->
+        <!-- CSS --><!--
         <link rel="stylesheet" type="text/css" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css" />
         <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/eetstyle.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css" />
-        
-        <!-- JQUERY -->
+        -->
+        <!-- JQUERY --><!--
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
@@ -87,12 +87,181 @@
                 <a data-role="button" data-direction="reverse" data-rel="back" href="#home" data-icon="arrow-l" data-iconpos="left">
                     Back
                 </a>
-                <h1>Eet.Nu API</h1>
+                <h1></h1>
             </div>
             <div data-role="content" id="content">
                 <h3 id="name"></h3>
                 <div id="map_canvas"></div>
             </div>
         </div>
+    </body>
+</html>-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eet.Nu API</title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS -->
+
+
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/eetstyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css" />
+
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <!-- JQUERY -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="js/jquery.ui.map.min.js"></script>
+        <script type="text/javascript" src="js/vertical-swipe.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        
+    </head>
+    <body onload="onDeviceReady()">
+        <div id="home" data-role="page">
+            <div data-role="panel" id="menu" data-display="overlay" data-theme="a">
+                <ul data-role="listview">
+                    <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+                    <li data-icon="gear"><a id="settingslink" href="#settings" data-transition="slide">Settings</a></li>
+                    <li data-icon="info"><a href="#about" data-transition="slide">About</a></li>
+                </ul>
+            </div>
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#menu" data-icon="bars" data-iconpos="notext"></a>
+                <h1></h1>
+            </div>
+            <div data-role="content" id="content">
+                <h3>Restaurants in de buurt</h3>
+                <ul id="restaurantlist" data-role="listview" data-inset="true">
+
+                </ul>
+            </div>
+        </div>
+
+        <div id="settings" data-role="page">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a data-role="button" data-direction="reverse" data-rel="back" href="#home" data-icon="arrow-l" data-iconpos="left">
+                    Back
+                </a>
+                <h1></h1>
+            </div>
+            <div data-role="content" id="content">
+                <h3>Settings</h3>
+                <form id="settingsForm">
+                    <div data-role="fieldcontain">
+                        <label for="distance">Max distance (km):</label>
+                        <input type="range" name="distance" id="distance" data-highlight="true" min="0.5" max="30" value="5" step="0.5" animate="true">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="sortby">Sort by:</label>
+                        <select name="sortby" id="sortby">
+                           <option value="distance">Distance</option>
+                           <option value="rating">Rating</option>
+                           <option value="reviews">Reviews</option>
+                        </select>
+                    </div>
+                    <div id="tag" data-role"fieldcontain">
+                        <form class="ui-filterable">
+                            <label for="tag-input">Tag:</label>
+                            <input id="tag-input" data-type="search" placeholder="Search tag...">
+                        </form>
+                        <div id="autocompletelist">
+                            <ul data-inset="true" data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#tag-input">
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="savebutton">
+                        <a id="save" href="#home" data-role="button" data-direction="reverse" data-rel="back" data-theme="a">Save</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="detail" data-role="page">
+            <input type="hidden" id="id_next" value=""/>
+            <input type="hidden" id="id_previous" value=""/>
+
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a data-role="button" data-rel="back" href="#home" data-icon="arrow-l" data-iconpos="left">Back</a>
+                <h1></h1>
+                <a href="#" data-icon="star" data-iconpos="notext" onclick="addToContacts()"></a>
+            </div>
+            <div data-role="content" id="content">
+                <h3 id="name"></h3>
+                <div id="map_canvas"></div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <h4>Address</h4>
+                        <p id="street"></p>
+                        <p id="zipcode_place"></p>
+                        <p id="country"></p>
+                    </div>
+                    <div class="ui-block-b">
+                        <h4>Contact</h4>
+                        <p><i class="fa fa-phone"></i> <a id="telephone" href="#"></a></p>
+                        <p><i class="fa fa-home"></i> <a id="own_url"   href="#" onclick="">Restaurant</a></p>
+                        <p><i class="fa fa-globe"></i> <a id="eetnu_url" href="#" onclick="">Eet.Nu</a></p>
+                    </div>
+                </div>
+                
+                <div class="ui-grid-solo">
+                    <h4>Ratings</h4>
+                    <table>
+                        <tr>
+                            <th>Overal</th><td id="rating"></td><td id="rating_stars"></td>
+                        </tr>
+                        <tr>
+                            <th>Ambiance</th><td id="ambiance"></td><td id="ambiance_stars"></td>
+                        </tr>
+                        <tr>
+                            <th>Food</th><td id="food"></td><td id="food_stars"></td>
+                        </tr>
+                        <tr>
+                            <th>Service</th><td id="service"></td><td id="service_stars"></td>
+                        </tr>
+                        <tr>
+                            <th>Price/Quality</th><td id="value"></td><td id="value_stars"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="ui-grid-solo">
+                    <h4>Opening hours</h4>
+                    <table>
+                        <tr><th class="day">Mon</th><td class="time" id="day_0"></td><th class="day">Fri</th><td class="time" id="day_4"></td></tr>
+                        <tr><th class="day">Tues</th><td class="time" id="day_1"></td><th class="day">Sat</th><td class="time" id="day_5"></tr>
+                        <tr><th class="day">Wed</th><td class="time" id="day_2"></td><th class="day">Sun</th><td class="time" id="day_6"></tr>
+                        <tr><th class="day">Thu</th><td class="time" id="day_3"></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" data-role="page">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a data-role="button" data-direction="reverse" data-rel="back" href="#home" data-icon="arrow-l" data-iconpos="left">
+                    Back
+                </a>
+                <h1></h1>
+            </div>
+            <div data-role="content" id="content">
+                <h3>About</h3>
+                Deze app is gemaakt door Alexander van Doorn, in opdracht van Avans Hogeschool:
+                <i class="sprite sprite-tmpavans"></i><br />
+                
+                Er is gebruik gemaakt van de Eet.nu API:
+                <i class="sprite sprite-tmpeetnu"></i>
+            </div>
+        </div>
+
     </body>
 </html>
