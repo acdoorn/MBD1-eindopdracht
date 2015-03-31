@@ -19,18 +19,18 @@
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
 
-<preference name="SplashScreen" value="screen" />
-<preference name="SplashScreenDelay" value="10000" />
-<platform name="android">
-    <splash src="res/screen/android/480x800.png" density="port-hdpi"/>
-    <splash src="res/screen/android/200x320.png" density="port-ldpi"/>
-    <splash src="res/screen/android/320x480.png" density="port-mdpi"/>
-    <splash src="res/screen/android/700x1280.png" density="port-xhdpi"/>
-    <splash src="res/screen/android/screen-hdpi-landscape.png" density="land-hdpi"/>
-    <splash src="res/screen/android/screen-ldpi-landscape.png" density="land-ldpi"/>
-    <splash src="res/screen/android/screen-mdpi-landscape.png" density="land-mdpi"/>
-    <splash src="res/screen/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
-</platform>
+  <preference name="SplashScreen" value="screen" />
+  <preference name="SplashScreenDelay" value="10000" />
+  <platform name="android">
+      <splash src="res/screen/android/480x800.png" density="port-hdpi"/>
+      <splash src="res/screen/android/200x320.png" density="port-ldpi"/>
+      <splash src="res/screen/android/320x480.png" density="port-mdpi"/>
+      <splash src="res/screen/android/700x1280.png" density="port-xhdpi"/>
+      <splash src="res/screen/android/screen-hdpi-landscape.png" density="land-hdpi"/>
+      <splash src="res/screen/android/screen-ldpi-landscape.png" density="land-ldpi"/>
+      <splash src="res/screen/android/screen-mdpi-landscape.png" density="land-mdpi"/>
+      <splash src="res/screen/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
+  </platform>
 
   <gap:plugin name="org.apache.cordova.battery-status"/>
   <gap:plugin name="org.apache.cordova.camera"/>

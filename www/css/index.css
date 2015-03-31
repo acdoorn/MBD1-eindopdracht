@@ -11,7 +11,7 @@ div#map_canvas {
 #savebutton {
     position:fixed;
     bottom:15px;
-    width:94%;
+    width:90%;
 }​
 #save {
   display: block;
@@ -82,47 +82,4 @@ th {
     text-align: left;
 }
 
-#rating {
-    width: 50px;
-}
-
-.fa-star-o {
-    color: orange;
-}
-
-.fa-star-half-o {
-    color: yellow;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: orange;
-}
-
-.fa-star {
-    color: yellow;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: orange;
-}
-
-.non-link {
-    text-decoration: none;
-    color: black;
-}
-
 .ui-page { -webkit-backface-visibility: hidden; }
-
-.sprite {
-    background-image: url(../img/spritesheet.png);
-    background-repeat: no-repeat;
-    display: block;
-}
-
-.sprite-tmpavans {
-    width: 225px;
-    height: 79px;
-    background-position: -1px -1px;
-}
-
-.sprite-tmpeetnu {
-    width: 225px;
-    height: 101px;
-    background-position: -1px -82px;
-}

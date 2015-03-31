@@ -21,10 +21,10 @@
         <!-- JQUERY -->
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
         <script type="text/javascript" src="js/jquery.ui.map.min.js"></script>
-        <script type="text/javascript" src="js/vertical-swipe.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+
 
         
     </head>
@@ -41,7 +41,7 @@
                 <h1 class="ui-title"></h1>
             </div>
             <div data-role="content" id="content">
-                <h3>Restaurants in de buurt<span style="float:right; font-size:75%;">Rating</span></h3>
+                <h3>Restaurants<span style="float:right; font-size:75%;">Rating</span></h3>
                 <ul id="restaurantlist" data-role="listview" data-inset="true">
 
                 </ul>
@@ -60,7 +60,7 @@
                 <form id="settingsForm">
                     <div data-role="fieldcontain">
                         <label for="distance">Maximale afstand (km):</label>
-                        <input type="range" name="distance" id="distance" data-highlight="true" min="0.5" max="30" value="5" step="0.5" animate="true">
+                        <input type="range" name="distance" id="distance" data-highlight="true" min="1" max="50" value="10" step="1" animate="true">
                     </div>
                     <div data-role="fieldcontain">
                         <label for="sortby">Sorteren op:</label>
@@ -70,16 +70,6 @@
                            <option value="reviews">Reviews</option>
                         </select>
                     </div>
-<!--                     <div id="tag" data-role"fieldcontain">
-                        <form class="ui-filterable">
-                            <label for="tag-input">Tag:</label>
-                            <input id="tag-input" data-type="search" placeholder="Search tag...">
-                        </form>
-                        <div id="autocompletelist">
-                            <ul data-inset="true" data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#tag-input">
-                            </ul>
-                        </div>
-                    </div> -->
                     <div id="savebutton">
                         <a id="save" href="#home" data-role="button" data-direction="reverse" data-rel="back">Opslaan</a>
                     </div>
@@ -98,40 +88,40 @@
             <div data-role="content" id="content">
                 <h3 id="name"></h3>
 
-                <div id="ratings" class="ui-grid-solo">
+                <div id="ratings">
                     <h4>Beoordelingen</h4>
-                    <table>
-                        <tr>
-                            <th>Algemeen</th><td id="rating"></td><td id="rating_stars"></td>
-                        </tr>
-                        <tr>
-                            <th>Sfeer</th><td id="ambiance"></td><td id="ambiance_stars"></td>
-                        </tr>
-                        <tr>
-                            <th>Eten</th><td id="food"></td><td id="food_stars"></td>
-                        </tr>
-                        <tr>
-                            <th>Service</th><td id="service"></td><td id="service_stars"></td>
-                        </tr>
-                        <tr>
-                            <th>Prijs/Kwaliteit</th><td id="value"></td><td id="value_stars"></td>
-                        </tr>
-                    </table>
+                    <div data-role="fieldcontain" id="eetnuRating">
+                        <p>Eet.nu rating<span style="float:right;" id="eetnu"></span></p>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <p>Algemeen<span style="float:right;" id="rating"></span></p>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <p>Sfeer<span style="float:right;" id="ambiance"></span></p>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <p>Eten<spa style="float:right;" id="food"></span></p>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <p>Service<span style="float:right;" id="service"></span></p>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <p>Prijs/Kwaliteit<span style="float:right;" id="value"></span></p>
+                    </div>
                 </div>
 
                 <div id="map_canvas"></div>
-
                 <div id="address">
-                        <h4>Adres</h4>
-                        <p id="street"></p>
-                        <p id="zipcode_place"></p>
-                        <p id="country"></p>
+                    <h4>Adres</h4>
+                    <p id="street"></p>
+                    <p id="zipcode_place"></p>
+                    <p id="country"></p>
                 </div>
                 <div id="contact">
                         <h4>Contact</h4>
                         <p><i class="fa fa-phone"></i> <a id="telephone" href="#"></a></p>
                         <p><i class="fa fa-user"></i> <a id="addcontact" href="#" onclick="addToContacts()">Voeg toe als contact</a></p>
-                        <p id="restaurant_url"><i class="fa fa-home"></i> <a id="own_url"   href="#" onclick="">Restaurant</a></p>
+                        <p id="restaurant_url"><i class="fa fa-home"></i> <a id="own_url"  href="#" onclick=""></a></p>
                         <p><i class="fa fa-globe"></i> <a id="eetnu_url" href="#" onclick="">Eet.Nu</a></p>
                 </div>
 
