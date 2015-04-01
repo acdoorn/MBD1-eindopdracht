@@ -239,6 +239,11 @@ function showDetails(json, slide_direction) {
             }
         });
 
+        var pinColor = "ac2773";
+        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
         // Map
         $('#map_canvas').gmap({ 'center': new google.maps.LatLng(data.geolocation.latitude,data.geolocation.longitude), 
             'zoomControl': false,
@@ -247,7 +252,7 @@ function showDetails(json, slide_direction) {
             'streetViewControl': false,
             'zoom':15, 'callback':function() {
                 $('#map_canvas').gmap('clearMarkers');
-                $('#map_canvas').gmap('addMarker',{'position':new google.maps.LatLng(data.geolocation.latitude,data.geolocation.longitude)})
+                $('#map_canvas').gmap('addMarker',{'position':new google.maps.LatLng(data.geolocation.latitude,data.geolocation.longitude), 'icon':pinImage})
             } 
         });
 
@@ -257,7 +262,7 @@ function showDetails(json, slide_direction) {
         $('#country').text(data.address.country);
 
         // Contact
-        $('#telephone').text(data.telephone);
+        $('#telephone').text("Bel nu: "+data.telephone);
         $('#telephone').attr("onclick", "window.open('tel:" + data.telephone + "', '_system');");
         if(data.website_url != null && data.website_url != "") {
             $('#own_url').attr("onclick", "navigator.app.loadUrl('" + data.website_url + "', { openExternal:true });");
