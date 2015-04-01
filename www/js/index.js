@@ -191,7 +191,7 @@ function showDetails(json, slide_direction) {
         $('#id_next').val(json.next);
         $('#id_previous').val(json.previous);
 
-                // Beoordeling
+        // Beoordeling
         var urlReview = "https://api.eet.nu/venues/" + id + "/reviews";
         $.getJSON(urlReview, function(reviewData) {
             if(reviewData.results.length == 0) {
